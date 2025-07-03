@@ -7,6 +7,7 @@ from contextlib import suppress
 from urllib.parse import urlsplit
 import requests
 from tqdm import tqdm
+import sys
 from .proxylist import spys_me, ProxyEntry
 
 
@@ -44,11 +45,11 @@ def download_via_proxy(
 
     proxies = _get_proxies(country)
     if not proxies:
-        raise RuntimeError("No proxies matched your criteria.")
+        sys.exit("No proxies matched your criteria.")
 
     for attempt, proxy in enumerate(proxies, 1):
         if attempt > max_retries:
-            raise RuntimeError("All proxies failed.")
+            sys.exit("All proxies failed.")
 
         print(f"[{attempt}/{max_retries}] probing {proxy} …", end="", flush=True)
         if not _proxy_is_alive(proxy):

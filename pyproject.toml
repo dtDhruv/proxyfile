@@ -12,6 +12,9 @@ dependencies = [
     "tqdm (>=4.67.1,<5.0.0)"
 ]
 
+[project.scripts]
+proxyfile = "proxyfile.cli:main"
+
 [tool.poetry]
 packages = [{include = "proxyfile", from = "src"}]
 
